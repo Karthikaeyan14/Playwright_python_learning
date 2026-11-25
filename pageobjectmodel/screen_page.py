@@ -3,6 +3,9 @@ from playwright.sync_api import expect,Page
 class Screen:
     def __init__(self,page):
         self.page=page
+        self.add_to_cart=self.page.locator("//button[text()=' Add To Cart']")
+        self.product_add=self.page.locator("//div[@aria-label='Product Added To Cart']")
+
 
     def search_product(self,enter_product):
         search_box=self.page.locator("//div[@class='py-2 border-bottom ml-3']//input[@placeholder='search']")
@@ -24,3 +27,9 @@ class Screen:
         enter_price_2=self.page.locator("(//input[@placeholder='Max Price'])[2]")
         enter_price_2.fill(max_price)
         enter_price_2.press('Enter')
+
+    def click_add(self):
+        self.add_to_cart.first.click()
+
+    def message_occur(self):
+        return self.product_add

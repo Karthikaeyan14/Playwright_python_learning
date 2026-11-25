@@ -41,4 +41,14 @@ def test_search_valid_price(page:Page):
 
 
 
-
+@pytest.mark.add_product
+def test_add_product(page:Page):
+    login_page=login(page)
+    login_page.navigation()
+    login_page.enter_username("karthi1412@gmail.com","KARTHIKAEYANr@14")
+    login_page.login_click()
+    expect(page).to_have_url("https://rahulshettyacademy.com/client/#/dashboard/dash")
+    screen=Screen(page)
+    screen.search_product('ZARA COAT 3')
+    screen.click_add()
+    expect(screen.message_occur()).to_be_visible()
