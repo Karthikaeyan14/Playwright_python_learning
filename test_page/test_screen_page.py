@@ -3,6 +3,7 @@ from playwright.sync_api import expect,Page
 from pageobjectmodel.login import login
 from pageobjectmodel.screen_page import Screen
 
+@pytest.mark.valid_product
 def test_valid_product(page:Page):
     login_page=login(page)
     login_page.navigation()
@@ -13,6 +14,7 @@ def test_valid_product(page:Page):
     screen.search_product('ZARA COAT 3')
     print(screen.valid_product())
 
+@pytest.mark.invalid_product
 def test_invalid_product(page:Page):
     login_page=login(page)
     login_page.navigation()
@@ -26,6 +28,7 @@ def test_invalid_product(page:Page):
     text=screen.no_product().text_content()
     assert text ==' No Products Found '
 
+@pytest.mark.valid_price
 def test_search_valid_price(page:Page):
     login_page=login(page)
     login_page.navigation()

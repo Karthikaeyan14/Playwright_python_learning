@@ -5,7 +5,7 @@ from playwright.sync_api import Page, expect
 
 
 
-@pytest.mark.test_valid
+@pytest.mark.valid_login_details
 def test_valid(page:Page):
     login_page=login(page)
     login_page.navigation()
@@ -14,7 +14,7 @@ def test_valid(page:Page):
     expect(page).to_have_url("https://rahulshettyacademy.com/client/#/dashboard/dash")
 
 
-@pytest.mark.test_invalid
+@pytest.mark.invalid_login_details
 def test_invalid(page:Page):
     
     login_page=login(page)
@@ -24,7 +24,7 @@ def test_invalid(page:Page):
     expect(login_page.error()).to_be_visible()
     #(login_page.error())
 
-@pytest.mark.test_empty
+@pytest.mark.empty_login_details
 def test_empty(page:Page):  
     login_page=login(page)
     login_page.navigation()
@@ -34,7 +34,7 @@ def test_empty(page:Page):
     expect(login_page.password_required()).to_be_visible()
 
 
-@pytest.mark.test_invalid_email
+@pytest.mark.invalid_email_details
 def test_invalid_email(page:Page):
     login_page=login(page)
     login_page.navigation()
