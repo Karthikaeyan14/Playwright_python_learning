@@ -20,9 +20,10 @@ jobs:
     - name: Ensure browsers are installed
       run: python -m playwright install --with-deps
     - name: Run your tests
-      run: pytest --tracing=retain-on-failure
+      #run: pytest --tracing=retain-on-failure
+      run:python -m pytest
     - uses: actions/upload-artifact@v5
       if: ${{ !cancelled() }}
-      with:
+      with: 
         name: playwright-traces
         path: test-results/
